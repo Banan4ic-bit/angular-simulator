@@ -11,47 +11,42 @@ import { Collection } from './collection';
 })
 export class AppComponent {
 
+  companyName: string = 'РУМТИБЕТ'
+
   constructor() {
     this.saveLastVisit();
     this.saveVisitCount();
+    this.testCollection();
   }
   
-  companyName: string = 'РУМТИБЕТ'
-  
-  //Проверка переданного цвета
   isColorSelected(color: Color): boolean {
-    return color === Color.RED || color === Color.BLUE || color === Color.GREEN
+    return [Color.BLUE, Color.RED, Color.GREEN].includes(color);
   }
 
-  //Сохранение даты последнего захода на страницу в локальное хранилище
   saveLastVisit(): void {
-    const date = new Date()
-    localStorage.setItem('LastVisit', date.toLocaleString())
-    console.log(localStorage.getItem('LastVisit'))
+    const date: Date = new Date();
+    localStorage.setItem('LastVisit', date.toLocaleString());
   }
 
-  //Сохранение количества заходов на странциу в локальное хранилище
-    saveVisitCount(): void {
-      if(localStorage.getItem('LastVisitCount') === null) {
-        localStorage.setItem('LastVisitCount', '1')
-      } else {
-        localStorage.setItem('LastVisitCount', (Number(localStorage.getItem('LastVisitCount')) + 1).toString())
+  saveVisitCount(): void {
+    const visitCountKey: string = 'LastVisitCount';
+    const visitCount: string | null = localStorage.getItem(visitCountKey);
+    let newVisitCount: number;
+    if(visitCount === null) {
+      newVisitCount = 1;
+    } else {
+      newVisitCount = Number(visitCount) + 1;
     }
+    localStorage.setItem(visitCountKey, newVisitCount.toString());
+  }
+
+  testCollection(): void {
+    const numbers: Collection<number> = new Collection<number>([10, 20, 30, 40, 20]);
+    numbers.replaceElement(20, 100)
+    numbers.deleteCertainElement(20);
+
+    const products: Collection<string> = new Collection<string>(['apple', 'banana', 'cherry']);
+    products.replaceElement('apple', 'pine');
+    products.deleteCertainElement('cherry');
   }
 }
-
-const app = new AppComponent;
-console.log(app.isColorSelected(Color.GREEN))
-
-const numbers = new Collection<number>([10, 20, 30, 40, 20]);
-numbers.replaceElement(20, 100)
-console.log(numbers.getAll())
-numbers.deleteCertainElement(20);
-console.log(numbers.getAll());
-
-
-const products = new Collection<string>(['apple', 'banana', 'cherry']);
-products.replaceElement('apple', 'pine');
-console.log(products.getAll());
-products.deleteCertainElement('cherry');
-console.log(products.getAll());

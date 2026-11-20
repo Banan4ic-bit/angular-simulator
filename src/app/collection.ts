@@ -4,7 +4,6 @@ export class Collection<T> {
 
   constructor(items: T[]) {
     this.items = items;
-
   }
 
   getAll(): T[] {
@@ -13,27 +12,23 @@ export class Collection<T> {
 
   getCertainElement(value: T): T | undefined {
     if (this.items.indexOf(value) != -1) {
-      return this.items[this.items.indexOf(value)]
+      return this.items[this.items.indexOf(value)];
     } else {
-      return undefined
+      return undefined;
     }
   }
   
-  clear() {
-    this.items.splice(0, this.items.length)
+  clear(): void {
+    this.items.splice(0, this.items.length);
   }
 
-  deleteCertainElement(value: T): void{
-    this.items = this.items.filter(item => item !== value)
+  deleteCertainElement(value: T): void {
+    this.items = this.items.filter((item: T) => item !== value);
   }
 
   replaceElement(value: T, newItem: T): void {
-    this.items = this.items.map(item => {
-      if(item === value) {
-       return newItem
-      } else {
-       return item
-      }
+    this.items = this.items.map((item: T) => {
+      return (item === value ? newItem : item);
     })
   }
 }
