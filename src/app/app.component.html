@@ -1,1 +1,67 @@
-<h1 style="display: flex; justify-content: center; font-family: sans-serif;">NGX SIMULATOR</h1>
+<header class="header">
+  <div class="container header-container">
+    <div class="logo-wrapper">
+      <img src="/images/logo-icon.svg" alt="Logo" width="138px" height="29px">
+      <p class="logo-item fs-16 semi-bold white-color">{{ companyName }}</p>
+    </div>
+    <nav class="main-menu white-color">
+      <a>Главная</a>
+      <a>Про гида</a>
+      <a>Программа тура</a>
+      <a>Стоимость</a>
+      <a>Блог</a>
+      <a>Контакты</a>
+    </nav>
+    <!-- ИСПРАВЛЕНО: Добавлен btn-white -->
+    <button class="main-button btn-white">Консультация</button>
+  </div>
+</header>
+
+<section class="banner">
+  <div class="container banner-info white-color">
+    <span>Насладись прогулкой в горах</span>
+    <span>С командой единомышленников</span>
+  </div>
+  
+  <div class="container banner-container">
+    <form class="banner-form">
+      <!-- Локация -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <select id="location" name="location" required>
+            <option value="" disabled selected hidden>Локация для тура</option>
+            <option value="mountains">Горы</option>
+            <option value="sea">Море</option>
+          </select>
+          <img src="/images/arrow_down-icon.svg" alt="arrow" class="icon-arrow">
+        </div>
+        <small>выберите из списка</small>
+      </div>
+      
+      <!-- Дата -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input type="text" id="date" name="date" placeholder="Дата похода" onfocus="(this.type='date')" onblur="(this.type='text')" required>
+          <img src="/images/calendar-icon.svg" alt="calendar" class="icon-calendar">
+        </div>
+        <small>укажите дату</small>
+      </div>
+
+      <!-- Участники -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <select id="members" name="members" required>
+            <option value="" disabled selected hidden>Участники</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <img src="/images/arrow_down-icon.svg" alt="arrow" class="icon-arrow">
+        </div>
+        <small>выберите из списка</small>
+      </div>
+      <button type="submit" class="main-button btn-dark">Найти программу</button>
+    </form>
+  </div>
+</section>
